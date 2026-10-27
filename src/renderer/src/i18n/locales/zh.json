@@ -143,6 +143,8 @@
       "chat": {
         "fontFamily": "字体",
         "fontFamilyDescription": "用于消息、活动和消息输入框的字体。",
+        "fontKeywordTypeface": "字体",
+        "fontKeywordTypography": "排版",
         "inheritFont": "与 IDE 字体相同",
         "fontPreviewLabel": "聊天字体预览",
         "fontPreview": "这段文字用于预览聊天字体。",
@@ -167,9 +169,7 @@
         "softer": "更柔和",
         "sharper": "更清晰",
         "terminalControlledHint": "由终端界面设置。",
-        "terminalControlledTooltip": "正在匹配终端外观。要更改此项，请关闭“匹配终端外观”。",
-        "fontKeywordTypeface": "字体",
-        "fontKeywordTypography": "排版"
+        "terminalControlledTooltip": "正在匹配终端外观。要更改此项，请关闭“匹配终端外观”。"
       }
     },
     "browser": {
@@ -250,6 +250,10 @@
       }
     },
     "agents": {
+      "permissionsTitle": "权限",
+      "permissionsChoiceExplanation": "每个智能体无需询问即可执行的操作。你可以在下方为单个智能体单独设置。",
+      "permissionEachOwn": "各智能体自己的设置",
+      "permissionEachOwnDescription": "Orca 不做任何更改；各 CLI 使用自己的配置",
       "codexTerminalServerIsolation": {
         "title": "在自己的服务器上运行每个 Codex 终端",
         "description": "保持 Orca 的状态和关闭选项卡正常工作。关闭以使用 Codex 的共享服务器及其智能体概述。适用于新终端。"
@@ -290,13 +294,6 @@
       "editRowPermissions": "{{agent}} 权限：{{mode}}",
       "expandAgentSettings": "展开智能体设置",
       "collapseAgentSettings": "折叠智能体设置",
-      "customPermissions": "自定义参数",
-      "rowPermissionsLabel": "{{agent}} 权限",
-      "replaceWithPermissionMode": "替换为 {{mode}}",
-      "permissionsTitle": "权限",
-      "permissionsChoiceExplanation": "每个智能体无需询问即可执行的操作。你可以在下方为单个智能体单独设置。",
-      "permissionEachOwn": "各智能体自己的设置",
-      "permissionEachOwnDescription": "Orca 不做任何更改；各 CLI 使用自己的配置",
       "permissionArgsTerminalOnly": "这些参数可能控制 {{agent}} 的终端权限，因此 Orca 不添加任何标志。聊天使用上方的权限选择。",
       "localSaveFailed": "无法保存智能体设置。请重试。",
       "localSaveFailedAgent": "无法保存 {{agent}} 设置。请重试。",
@@ -323,7 +320,10 @@
       "permissionOverrideMore": "另外 {{count}} 个",
       "permissionOverrideMore_one": "另外 {{count}} 个",
       "permissionOverrideMore_other": "另外 {{count}} 个",
-      "permissionOverridesUse": "使用 {{mode}}"
+      "permissionOverridesUse": "使用 {{mode}}",
+      "customPermissions": "自定义参数",
+      "rowPermissionsLabel": "{{agent}} 权限",
+      "replaceWithPermissionMode": "替换为 {{mode}}"
     },
     "followSymlinkedDirectoriesKeywords": {
       "symlink": "符号链接",
@@ -642,6 +642,18 @@
           "localBaseRefRefreshFailedDetailDirty": "检出本地 {{value0}} 的工作树有未提交的更改。请提交、暂存或丢弃这些更改，然后手动更新本地 {{value0}}。",
           "localBaseRefRefreshFailedDetailNotFastForward": "本地 {{value0}} 不存在，或无法从远程基线干净快进。手动更新前请检查是否有仅存在于本地的提交。",
           "localBaseRefRefreshFailedDetailError": "更新本地 {{value0}} 时 Git 返回错误。请检查仓库是否有锁定的 refs 或异常工作树状态，然后手动更新本地 {{value0}}。",
+          "localBaseRefShallowHistoryTitle": "本地 {{value0}} 未更新：浅克隆",
+          "localBaseRefShallowHistoryNamed": "“{{value0}}”由 {{value1}} 创建，不受影响。Orca 无法同时更新你的本地 {{value2}} 分支：此克隆只包含较近的历史，Git 无法确认本地 {{value2}} 只是落后。要为之后每个新工作区解决此问题，请运行一次：",
+          "localBaseRefShallowHistory": "你的工作区由 {{value0}} 创建，不受影响。Orca 无法同时更新你的本地 {{value1}} 分支：此克隆只包含较近的历史，Git 无法确认本地 {{value1}} 只是落后。要为之后每个新工作区解决此问题，请运行一次：",
+          "localBaseRefRefreshTurnOff": "禁用检查",
+          "localBaseRefRefreshTurnOffHelp": "了解“禁用检查”的作用",
+          "localBaseRefRefreshTurnOffTooltip": "关闭 Orca 设置 {{value0}}。创建工作区时 Orca 将不再更新本地 {{value1}}，此警告也不会再出现。新工作区不受影响。可随时在设置 › Git 中重新开启。",
+          "localBaseRefUnshallow": "取消浅克隆",
+          "localBaseRefUnshallowFailed": "无法为此工作区打开终端",
+          "localBaseRefUnshallowFailedDescription": "请改为在此仓库的终端中运行 {{value0}}。",
+          "localBaseRefRefreshTurnedOff": "Orca 将不再更新本地 {{value0}}",
+          "localBaseRefRefreshTurnedOffDescription": "可在设置 › {{value0}} 中重新开启。",
+          "localBaseRefRefreshTurnOffFailed": "无法关闭 {{value0}}",
           "0216895fb5": "删除分支失败",
           "19db0085fb": "本地分支已删除",
           "2b0afc7f14": "无法使本地 {{value0}} 保持最新",
@@ -673,19 +685,7 @@
                 }
               }
             }
-          },
-          "localBaseRefShallowHistoryTitle": "本地 {{value0}} 未更新：浅克隆",
-          "localBaseRefShallowHistoryNamed": "“{{value0}}”由 {{value1}} 创建，不受影响。Orca 无法同时更新你的本地 {{value2}} 分支：此克隆只包含较近的历史，Git 无法确认本地 {{value2}} 只是落后。要为之后每个新工作区解决此问题，请运行一次：",
-          "localBaseRefShallowHistory": "你的工作区由 {{value0}} 创建，不受影响。Orca 无法同时更新你的本地 {{value1}} 分支：此克隆只包含较近的历史，Git 无法确认本地 {{value1}} 只是落后。要为之后每个新工作区解决此问题，请运行一次：",
-          "localBaseRefRefreshTurnOff": "禁用检查",
-          "localBaseRefRefreshTurnOffHelp": "了解“禁用检查”的作用",
-          "localBaseRefRefreshTurnOffTooltip": "关闭 Orca 设置 {{value0}}。创建工作区时 Orca 将不再更新本地 {{value1}}，此警告也不会再出现。新工作区不受影响。可随时在设置 › Git 中重新开启。",
-          "localBaseRefUnshallow": "取消浅克隆",
-          "localBaseRefUnshallowFailed": "无法为此工作区打开终端",
-          "localBaseRefUnshallowFailedDescription": "请改为在此仓库的终端中运行 {{value0}}。",
-          "localBaseRefRefreshTurnedOff": "Orca 将不再更新本地 {{value0}}",
-          "localBaseRefRefreshTurnedOffDescription": "可在设置 › {{value0}} 中重新开启。",
-          "localBaseRefRefreshTurnOffFailed": "无法关闭 {{value0}}"
+          }
         },
         "repos": {
           "2975400634": "请更新 Orca 服务器，以便在此运行时打开非 Git 文件夹。",
@@ -1148,6 +1148,10 @@
               "undecryptableAppBoundMixed": "Orca 无法解密该浏览器 cookie 的 {{value0}}，因为它们使用应用程序绑定加密；由于其他原因，{{value1}} more 无法解密。您可以使用“从文件...”从文件导入 cookie。",
               "undecryptableKeyring": "由于系统密钥环不可用，{{value0}} cookie 无法解密。解锁您的登录密钥环（或安装 Secret Service 提供程序，例如 gnome-keyring）并再次导入。",
               "undecryptableKeyringMixed": "由于系统密钥环不可用，{{value0}} cookie 无法解密；由于其他原因，{{value1}} more 无法解密。解锁您的登录密钥环（或安装 Secret Service 提供程序，例如 gnome-keyring）并再次导入。",
+              "secretToolMissing": "Orca 无法读取 {{browser}} 的 {{count}} 个加密 Cookie，因为未安装 secret-tool。请安装 libsecret-tools（或你的发行版的等效软件包）后重新导入。",
+              "cookieKeyLocked": "Orca 无法读取 {{browser}} 的 {{count}} 个加密 Cookie，因为系统密钥环已锁定或拒绝访问。请解锁你的登录密钥环，并在提示时允许访问，然后重新导入。",
+              "cookieKeyUnavailable": "Orca 无法读取 {{browser}} 的 {{count}} 个加密 Cookie，因为无法读取 Cookie 加密密钥。请重试导入、使用“从文件…”导入 Cookie，或直接在 Orca 中登录。",
+              "otherUndecryptableCookies": "另有 {{count}} 个 Cookie 因其他原因无法解密。",
               "undecryptableUnknown": "{{value0}} cookie 无法解密并被跳过。完全关闭源浏览器并再次尝试导入。",
               "unrecognizedWarning": "cookie 导入结束时出现此版本的 Orca 无法识别的警告。更新 Orca 以查看详细信息，然后在依赖其 cookie 之前检查此配置文件。",
               "undecryptableUnrecognizedReason": "{{value0}} cookies 无法解密并被跳过，原因是此版本的 Orca 无法识别。更新 Orca 以查看详细信息，然后再次尝试导入。",
@@ -1158,11 +1162,7 @@
               "locationRemoteHost": "从 {{value0}} 上的浏览​​器读取并存储在那里。",
               "googleCookiesSkippedLocal": "未导入 Google cookie。使用此配置文件在 Orca 中打开浏览器，然后登录 Google。",
               "googleCookiesSkippedClientHosted": "未导入 Google cookie。使用此配置文件在 {{value0}} 工作区中打开浏览器选项卡 - 它在此设备上打开 - 然后登录 Google。",
-              "googleCookiesSkippedRemoteWorkspace": "未导入 Google cookie。使用此配置文件在 {{value0}} 工作区中打开浏览器选项卡，然后登录 Google。",
-              "secretToolMissing": "Orca 无法读取 {{browser}} 的 {{count}} 个加密 Cookie，因为未安装 secret-tool。请安装 libsecret-tools（或你的发行版的等效软件包）后重新导入。",
-              "cookieKeyLocked": "Orca 无法读取 {{browser}} 的 {{count}} 个加密 Cookie，因为系统密钥环已锁定或拒绝访问。请解锁你的登录密钥环，并在提示时允许访问，然后重新导入。",
-              "cookieKeyUnavailable": "Orca 无法读取 {{browser}} 的 {{count}} 个加密 Cookie，因为无法读取 Cookie 加密密钥。请重试导入、使用“从文件…”导入 Cookie，或直接在 Orca 中登录。",
-              "otherUndecryptableCookies": "另有 {{count}} 个 Cookie 因其他原因无法解密。"
+              "googleCookiesSkippedRemoteWorkspace": "未导入 Google cookie。使用此配置文件在 {{value0}} 工作区中打开浏览器选项卡，然后登录 Google。"
             }
           }
         }
@@ -1205,6 +1205,15 @@
       },
       "clipboardWriteFailure": {
         "tooLarge": "文字太大，无法复制。"
+      },
+      "dropFailureReason": {
+        "tooLarge": "文件过大，无法上传到此主机。",
+        "noSpace": "主机磁盘空间已用尽。",
+        "changed": "文件在上传过程中发生了变化。请重试。",
+        "hostUnreachable": "到主机的连接已变化或断开。请重试。",
+        "disconnected": "主机已断开连接。",
+        "unknownOne": "无法上传此文件。",
+        "unknownMany": "无法上传这些文件。"
       },
       "dropSkipReason": {
         "missing": "该文件已不在原始路径。",
@@ -1269,15 +1278,6 @@
           }
         }
       },
-      "dropFailureReason": {
-        "tooLarge": "文件过大，无法上传到此主机。",
-        "noSpace": "主机磁盘空间已用尽。",
-        "changed": "文件在上传过程中发生了变化。请重试。",
-        "hostUnreachable": "到主机的连接已变化或断开。请重试。",
-        "disconnected": "主机已断开连接。",
-        "unknownOne": "无法上传此文件。",
-        "unknownMany": "无法上传这些文件。"
-      },
       "claudeAgentRowView": {
         "restartRequired": "在此窗格中重启 Claude 以启用子智能体导航。需要较新的、带有 Orca 钩子的 Claude 版本。",
         "permissionPrompt": "请先回应 Claude 的权限提示，再切换智能体。",
@@ -1316,13 +1316,13 @@
         "nativeDropPathsTooLargeDescription": "请减少文件数量或使用更短的路径列表。",
         "nativeDropPathsTooLarge": "拖放的路径列表过大。",
         "ownerChanged": "无法确认哪个主机拥有此工作区。请在它重新连接后重试。",
+        "hostMismatch": "此编辑器位于另一台主机上。请从文件的源工作区打开它。",
+        "workspaceOpenFailed": "无法打开 {{fileName}}。请从其源工作区打开后重试。",
         "nativeDropUnresolvedPathsDescription": "首先将它们保存到磁盘，然后删除保存的文件。",
         "nativeDropUnresolvedPaths": "Orca 无法读取已删除文件的路径。",
         "nativeDropTempCopyFailed": "Orca 无法复制 {{count}} 个拖放的文件。",
         "nativeDropTempCopyFailed_one": "Orca 无法复制 {{count}} 个拖放的文件。",
-        "nativeDropTempCopyFailed_other": "Orca 无法复制 {{count}} 个拖放的文件。",
-        "hostMismatch": "此编辑器位于另一台主机上。请从文件的源工作区打开它。",
-        "workspaceOpenFailed": "无法打开 {{fileName}}。请从其源工作区打开后重试。"
+        "nativeDropTempCopyFailed_other": "Orca 无法复制 {{count}} 个拖放的文件。"
       },
       "useIpcEvents": {
         "0e3cf53060": "未找到浏览器选项卡 {{value0}}",
@@ -3412,6 +3412,7 @@
             "78b79d854d": "关闭终端？",
             "stop_agent_title": "停止此智能体？",
             "stop_command_title": "停止运行中的命令？",
+            "stop_chat_description": "关闭此聊天将停止智能体当前任务。",
             "stop_agent_description": "关闭此终端将停止智能体当前任务。",
             "stop_command_description": "关闭此终端将停止其中正在运行的命令。",
             "dont_ask_again": "对有运行中进程的终端不再询问",
@@ -3777,6 +3778,8 @@
             "8dea9b5cdf": "没有启用智能体",
             "needsServerUpdate": "请更新此服务器上的 Orca 以列出此工作区的智能体",
             "hostUnreachable": "无法连接此工作区的主机以列出其智能体",
+            "terminalListNeedsServerUpdate": "更新此服务器上的 Orca 以列出终端智能体",
+            "terminalListFailed": "无法列出此工作区的终端智能体",
             "chatNotInstalled": "未安装",
             "startChat": "开始与 {{value0}} 聊天",
             "chatUnavailableAfterSelection": "无法开始 {{value0}} 聊天。",
@@ -3787,9 +3790,7 @@
             "chatNotOnHost": "此主机不支持聊天",
             "chatNotInWsl": "WSL 不支持聊天",
             "cliTag": "(CLI)",
-            "chatNotOverSsh": "SSH 连接不支持聊天",
-            "terminalListNeedsServerUpdate": "更新此服务器上的 Orca 以列出终端智能体",
-            "terminalListFailed": "无法列出此工作区的终端智能体"
+            "chatNotOverSsh": "SSH 连接不支持聊天"
           },
           "RecentTabSwitcher": {
             "329638ff6f": "切换选项卡",
@@ -4988,6 +4989,7 @@
           "updateMany": "更新技能",
           "description": "更新 {{value0}}，让智能体遵循此版本 Orca 的最新说明。"
         },
+        "SkillFreshnessRow": {},
         "SkillFreshnessUpdateDialog": {
           "title": "更新技能",
           "checking": "正在检查已安装的 Orca 技能…",
@@ -5029,6 +5031,7 @@
           "updateServer": "请在服务器上更新 Orca",
           "connectHost": "请连接 SSH 主机"
         },
+        "SkillUpdateResultRows": {},
         "SkillUpdateRow": {
           "replaceWithOrca": "替换为 Orca 的副本（保留备份）"
         },
@@ -7801,6 +7804,8 @@
           "projectRuntimeDescription": "不覆盖此项的本地 Windows 项目的默认运行时。",
           "editor_preview_tabs": "浏览文件时重复使用预览选项卡",
           "editor_preview_tabs_description": "单击资源管理器中的文件，或点击 Markdown 源中的链接，可以重复使用每组一个斜体预览选项卡，而不是打开一个新选项卡。编辑、双击或固定可以使该选项卡保持打开状态。关闭此选项可为每个文件提供自己的选项卡。",
+          "confirm_running_work_close": "关闭活动聊天或终端前确认",
+          "confirm_running_work_close_description": "关闭聊天或终端时，在停止正在运行的智能体或命令前询问。",
           "confirm_running_terminal_close": "关闭运行终端前确认",
           "confirm_running_terminal_close_description": "关闭终端时，在停止正在运行的智能体或命令之前询问。"
         },
@@ -9097,6 +9102,8 @@
           "e9609ddca6": "代理、跳板主机和连接复用",
           "8c922dffba": "复用 SSH 连接以加快设置",
           "53e9aabfc0": "可用时使用 OpenSSH 多路复用。对于有自定义 SSH 限制的主机，请关闭此项。",
+          "proxyConnectionReuse": "复用单个代理连接",
+          "proxyConnectionReuseHelp": "通过较慢的 ProxyCommand 或 ProxyJump 主机连接时更快。仅当你的 ssh_config 不依赖主机特定的 Match 或 %h 规则时才启用。",
           "editTitle": "编辑 SSH 主机",
           "addTitle": "添加 SSH 主机",
           "editDescription": "更新此机器的连接详情。更改将在下次连接时生效。",
@@ -9106,9 +9113,7 @@
           "reconnectOnLaunchHelp": "关闭后，Orca 启动时会让此主机及通过它访问的 Orca 服务器保持断开，直到你手动连接。",
           "allowRemoteCliControl": "允许此主机的 orca CLI 控制 Orca",
           "allowRemoteCliControlHelp": "新主机默认开启。允许在此主机上运行的 orca 命令打开并操作此桌面上的 Orca 浏览器标签页，但仅限此主机的工作区，且仅在主机连接期间；并允许此主机上由旧版 Orca 启动的终端为其自身受监督的工作运行编排命令（check、inbox、send、ask、reply）。它们无法读取你的文件、剪贴板或 Cookie。关闭时，它们只能访问此主机自身的 Orca 服务器。",
-          "addHost": "添加主机",
-          "proxyConnectionReuse": "复用单个代理连接",
-          "proxyConnectionReuseHelp": "通过较慢的 ProxyCommand 或 ProxyJump 主机连接时更快。仅当你的 ssh_config 不依赖主机特定的 Match 或 %h 规则时才启用。"
+          "addHost": "添加主机"
         },
         "TasksPane": {
           "f71d8a9dd3": "任务提供者",
@@ -13024,6 +13029,8 @@
           "linkedProjects_other": "此主机的 Orca 服务器已有 {{paths}}，因此此桌面现在使用服务器的副本。此桌面在那里的标签页和 {{count}} 个自动化未被迁移，它在那里创建的工作树会显示为外部工作树。",
           "linkedProjects": "此主机的 Orca 服务器已有 {{paths}}，因此此桌面现在使用服务器的副本。此桌面在那里的标签页和 {{count}} 个自动化未被迁移，它在那里创建的工作树会显示为外部工作树。",
           "linkedProjectsNoAutomations": "此主机的 Orca 服务器已有 {{paths}}，因此此桌面现在使用服务器的副本。此桌面在那里的标签页未被迁移，它在那里创建的工作树会显示为外部工作树。",
+          "automationsLeftDisabled_one": "此主机上的 Orca 服务器接管了 {{count}} 个自动化任务，但无法重新启用。请在“自动化”中开启。",
+          "automationsLeftDisabled_other": "此主机上的 Orca 服务器接管了 {{count}} 个自动化任务，但无法重新启用。请在“自动化”中开启。",
           "nodeDownloadBlocked": "这台电脑和这台主机都无法下载 Orca 服务器所需的 Node.js。请使用 Node.js 镜像，或检查两台机器的网络。",
           "nodeDownloadBlockedNoMirror": "这台电脑和这台主机都无法下载 Orca 服务器所需的 Node.js。请检查两台机器的网络或代理，然后重新连接。",
           "nodeDownloadBlockedMirrorTried": "这台电脑和这台主机都无法下载 Node.js，包括从 Node.js 下载镜像下载。请检查镜像设置，然后重新连接。",
@@ -13036,13 +13043,11 @@
           "refusedBlockedReason": "此主机尚未设置 Orca。{{reason}}",
           "refusedLeaveBehind": "此主机的部分已保存项目无法移到其 Orca 服务器：{{items}}。“仍要迁移”会连接此主机，并将这些项目保留在这台电脑上。",
           "refusedLeaveBehindUnnamed": "此主机的部分已保存项目无法移到其 Orca 服务器。“仍要迁移”会连接此主机，并将这些项目保留在这台电脑上。",
-          "runtimeNoexec": "此主机不允许执行 ~/.orca-remote 中的程序，因此 Orca 无法在那里启动服务器。这通常是因为主目录以 noexec 选项挂载。请联系主机管理员，允许在该目录中执行程序，然后重新连接。",
-          "setupContactLost": "Orca 在设置服务器时失去了与此主机的联系。主机上没有任何进程被停止。请重新连接以继续。",
-          "automationsLeftDisabled_one": "此主机上的 Orca 服务器接管了 {{count}} 个自动化任务，但无法重新启用。请在“自动化”中开启。",
-          "automationsLeftDisabled_other": "此主机上的 Orca 服务器接管了 {{count}} 个自动化任务，但无法重新启用。请在“自动化”中开启。",
           "windowsBuildUnsupported": "此主机运行的 Windows 版本低于 Windows 10 和 Windows Server 2016，无法运行 Orca 的服务器。请使用 Windows 版本较新的主机，或 Linux、macOS 主机。",
           "windowsNoExtractor": "此 Windows 主机上既没有 tar.exe 也没有 PowerShell 的 Expand-Archive，Orca 无法在其中解包服务器。请先在主机上安装 Windows PowerShell 5.1，然后重新连接。",
-          "automationsLeftDisabled": "此主机上的 Orca 服务器接管了 {{count}} 个自动化任务，但无法重新启用。请在“自动化”中开启。"
+          "automationsLeftDisabled": "此主机上的 Orca 服务器接管了 {{count}} 个自动化任务，但无法重新启用。请在“自动化”中开启。",
+          "runtimeNoexec": "此主机不允许执行 ~/.orca-remote 中的程序，因此 Orca 无法在那里启动服务器。这通常是因为主目录以 noexec 选项挂载。请联系主机管理员，允许在该目录中执行程序，然后重新连接。",
+          "setupContactLost": "Orca 在设置服务器时失去了与此主机的联系。主机上没有任何进程被停止。请重新连接以继续。"
         },
         "deltaMove": {
           "action": "迁移新项目…",
@@ -13305,22 +13310,6 @@
           "resultUpdateSkippedPlaces": "{{result}} · 已跳过 {{places}} 个位置的更新：{{reason}}",
           "resultUpdateSkippedAgent": "{{result}} · 已跳过 {{agent}} 中的更新：{{reason}}"
         },
-        "ReleaseBuildPicker": {
-          "build": "构建版本",
-          "searchPlaceholder": "搜索构建...",
-          "noMatches": "没有匹配的版本。",
-          "searchLabel": "搜索构建"
-        },
-        "notification": {
-          "settings": {
-            "copy": {
-              "macFailureTitle": "macOS 未显示通知",
-              "macFailureDescription": "请在系统设置中为 Orca 开启“允许通知”。",
-              "windowsFailureTitle": "Windows 未显示通知",
-              "windowsFailureDescription": "请在 Windows 设置中为 Orca 开启通知。"
-            }
-          }
-        },
         "recoverServer": {
           "title": "恢复 Orca 服务器",
           "description": "此主机上的 Orca 服务器无法启动，因为上一次运行留下的锁仍然存在。",
@@ -13352,6 +13341,22 @@
             "plugin": "插件",
             "mod": "mod",
             "shortcut": "快捷键"
+          }
+        },
+        "ReleaseBuildPicker": {
+          "build": "构建版本",
+          "searchPlaceholder": "搜索构建...",
+          "noMatches": "没有匹配的版本。",
+          "searchLabel": "搜索构建"
+        },
+        "notification": {
+          "settings": {
+            "copy": {
+              "macFailureTitle": "macOS 未显示通知",
+              "macFailureDescription": "请在系统设置中为 Orca 开启“允许通知”。",
+              "windowsFailureTitle": "Windows 未显示通知",
+              "windowsFailureDescription": "请在 Windows 设置中为 Orca 开启通知。"
+            }
           }
         }
       },
@@ -18633,6 +18638,12 @@
         "description": "直接在 Orca 中登录 Google。"
       },
       "NativeChatResumeOnRestartModal": {
+        "serverTitle": "{{machine}} 已重启",
+        "serverBody": "这些聊天在 {{machine}} 上的 Orca 重启时正在进行中。恢复会把每个聊天还原到中断处，并让智能体继续。你自己的提示词不会重新发送。",
+        "serverDismiss": "忽略",
+        "serverResumeAll": "恢复 {{machine}} 上的全部 {{count}} 个",
+        "serverResumeHereOne": "恢复此处开始的 1 个聊天",
+        "serverResumeHere": "恢复此处开始的 {{count}} 个聊天",
         "title": "恢复中断的聊天？",
         "body": "当 Orca 关闭时，这些聊天正在工作。恢复会将每个聊天还原到停止的位置及其完整上下文，并要求智能体在继续之前检查它正在做的事情。您自己的提示不会重新发送。",
         "updateBody": "当 Orca 安装更新时，这些聊天正在工作。恢复会将每个聊天还原到停止的位置及其完整上下文，并要求智能体在继续之前检查它正在做的事情。您自己的提示不会重新发送。",
@@ -18674,13 +18685,7 @@
         "selectMachine": "选择 {{value0}} 上的全部聊天",
         "sshHost": "SSH",
         "done": "完成",
-        "resultListLabel": "本次恢复的聊天",
-        "serverTitle": "{{machine}} 已重启",
-        "serverBody": "这些聊天在 {{machine}} 上的 Orca 重启时正在进行中。恢复会把每个聊天还原到中断处，并让智能体继续。你自己的提示词不会重新发送。",
-        "serverDismiss": "忽略",
-        "serverResumeAll": "恢复 {{machine}} 上的全部 {{count}} 个",
-        "serverResumeHereOne": "恢复此处开始的 1 个聊天",
-        "serverResumeHere": "恢复此处开始的 {{count}} 个聊天"
+        "resultListLabel": "本次恢复的聊天"
       },
       "linear-issue-attribute-filter-coverage-notice": {
         "statusPartialTeamCoverage": "过滤 {{value1}} 团队状态中的 {{value0}} — 不包括其余团队的问题。",
@@ -18905,11 +18910,6 @@
         "cancelled": "此普通 SSH 终端在启动前已关闭。",
         "terminalUnavailable": "Orca 无法在此处打开终端。",
         "openHint": "在 Orca 无法在该主机上完成设置时，仍可让你继续在主机上工作。"
-      },
-      "ClaudeAgentViewIndicator": {
-        "viewing": "当前正在查看",
-        "viewingChild": "正在查看子智能体 {{name}}",
-        "returnHint": "点击父级行可返回。Esc 停止此子智能体。Enter 将你的草稿发送到此子智能体。"
       }
     },
     "i18n": {
@@ -19124,6 +19124,7 @@
         "notDoneAnswer": "您的回答未发送。",
         "notDoneOption": "设置未更改。",
         "notDoneCommand": "命令未运行。",
+        "notDoneGoalChangeIncomplete": "未能完成更改目标。请查看聊天。",
         "notDoneQueuedEdit": "你的编辑未保存。",
         "restartFailed": "智能体无法重新启动。",
         "capacity": "运行此聊天的计算机上的 Orca 已达到请求上限。请在那台计算机上更新 Orca，然后重试。",
@@ -19187,7 +19188,7 @@
         "compactAfterRetry": "请先重试您之前的消息，然后再运行 /compact。",
         "clearAfterSending": "您之前的消息仍在发送中。发送完成后再运行 /clear。",
         "compactAfterSending": "您之前的消息仍在发送中。发送完成后再运行 /compact。",
-        "notDoneGoalChangeIncomplete": "未能完成更改目标。请查看聊天。"
+        "pendingWork": "在使用此命令之前，请等待挂起的工作和消息完成。"
       },
       "composer": {
         "imageUnsupported": "此智能体不支持粘贴图片。",
@@ -19634,9 +19635,6 @@
         "tokens": "{{value0}} 代币",
         "unnamed": "子智能体"
       },
-      "conversationCommand": {
-        "pendingWork": "在使用此命令之前，请等待挂起的工作和消息完成。"
-      },
       "drop": {
         "messageTitle": "拖放以附加到此消息",
         "title": "拖放以附加到此聊天",
@@ -19701,6 +19699,9 @@
         "sendHint": "立即发送此消息",
         "delete": "删除",
         "moreActions": "更多操作",
+        "moveChanged": "队列在此移动前发生了变化。请重新拖动该消息。",
+        "reorderHint": "拖动可重新排序，或使用上、下方向键。",
+        "reorderMessage": "重新排序消息",
         "editMessage": "编辑消息",
         "showFullMessage": "显示完整消息",
         "showLess": "收起",
@@ -19728,10 +19729,7 @@
         "queued": "已排队",
         "clearAll": "全部清除",
         "pasteOrDropImages": "粘贴或拖入图片",
-        "saveNeedsContent": "添加文字或图片后才能保存",
-        "moveChanged": "队列在此移动前发生了变化。请重新拖动该消息。",
-        "reorderHint": "拖动可重新排序，或使用上、下方向键。",
-        "reorderMessage": "重新排序消息"
+        "saveNeedsContent": "添加文字或图片后才能保存"
       },
       "thought": "已思考",
       "thoughtForDuration": "思考了 {{duration}}",
@@ -20111,6 +20109,7 @@
       }
     },
     "agentSessionContinuation": {
+      "preparingContext": "正在准备已保存的聊天上下文…",
       "handOffToAnotherAgent": "移交给另一个智能体",
       "dialogTitle": "移交给另一个智能体",
       "dialogDescription": "从当前进度启动一个新的智能体会话，原会话保持不变。",
@@ -20124,6 +20123,8 @@
       "context": "上下文",
       "modeFocused": "聚焦交接（推荐）",
       "modeFocusedDescription": "使用最新进度和当前工作区，仅在需要时读取更早的会话细节。",
+      "modeLoadedDescription": "使用此聊天中当前已加载的最近消息和当前工作区。",
+      "modeCapturedDescription": "使用捕获的文本和当前工作区。",
       "modeFull": "完整会话记录",
       "modeFullDescription": "让新智能体在继续前读取完整的已保存会话。这可能需要更长时间，并消耗大量上下文、套餐用量或 API 额度。",
       "startsIn": "启动目录：",
@@ -21084,6 +21085,8 @@
       "added": "已添加账户。选择它即可将其用于您下次启动的 Claude。",
       "nextLaunch": "{{value0}} → {{value1}}。您下次启动的 Claude 将使用它。正在运行的会话会保留其账户。",
       "profileSwitching": "切换会应用于您在任何标签页中下次启动的 Claude。正在运行的会话会保留其账户。",
+      "systemDefault": "系统默认",
+      "unnamedAccount": "Claude 账户",
       "systemDefaultNamed": "系统默认：{{value0}}",
       "systemDefaultIsSaved": "系统默认已登录为 {{value0}}，它同时也是一个已保存的账户。较早版本的 Orca 可能已将那个登录信息复制到那里。如果它不是您自己的登录信息，请选择系统默认并运行 claude /login。",
       "systemDefaultIsSavedDismiss": "关闭",
@@ -21118,6 +21121,8 @@
         "restartOther": "重启 {{count}} 个会话",
         "session": "Claude 会话",
         "restartingOther": "正在 {{account}} 账户上重启 {{count}} 个 Claude 会话",
+        "uncheckedOne": "无法检查 1 个终端中的 Claude。如果 Claude 正在那里运行，它会保持 {{previous}} 直到重启。",
+        "uncheckedOther": "无法检查 {{count}} 个终端中的 Claude。其中正在运行的 Claude 会保持 {{previous}} 直到重启。",
         "restartingOne": "正在 {{account}} 账户上重启 1 个 Claude 会话",
         "settingKeep": "永不重启",
         "groupOnAccount": "在 {{account}} 上运行",
@@ -21132,9 +21137,7 @@
         "reviewBodyOther": "另有 {{count}} 个 Claude 会话未移至 {{next}}。",
         "notMovedOne": "另有 1 个会话未移动。",
         "notMovedOther": "另有 {{count}} 个会话未移动。",
-        "review": "查看",
-        "uncheckedOne": "无法检查 1 个终端中的 Claude。如果 Claude 正在那里运行，它会保持 {{previous}} 直到重启。",
-        "uncheckedOther": "无法检查 {{count}} 个终端中的 Claude。其中正在运行的 Claude 会保持 {{previous}} 直到重启。"
+        "review": "查看"
       }
     },
     "hostSignIn": {
@@ -21712,6 +21715,11 @@
   "browserTab": {
     "agentDriving": "智能体正在使用此页面"
   },
+  "nativeChat": {
+    "math": {
+      "scrollDisplayEquation": "滚动显示公式"
+    }
+  },
   "quitAndStopAllSessions": {
     "title": "完全退出",
     "message": "停止所有终端会话并退出 Orca？",
@@ -21723,10 +21731,5 @@
     "ok": "确定",
     "unavailableMessage": "Orca 目前无法停止所有终端会话。",
     "unavailableDetail": "未停止任何内容。请在终端打开后重试。如果某个终端显示它是在较新版本的 Orca 中打开的，请先重新打开它。如果终端已经打开，请退出并重新打开 Orca，然后重试。"
-  },
-  "nativeChat": {
-    "math": {
-      "scrollDisplayEquation": "滚动显示公式"
-    }
   }
 }
