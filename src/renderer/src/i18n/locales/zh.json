@@ -247,6 +247,39 @@
         "optionRepoTooltip": "每个仓库的所有工作区共享同一个配置文件，在首次使用时创建。",
         "worktreeProfileLabel": "工作区：{{name}}",
         "repoProfileLabel": "仓库：{{name}}"
+      },
+      "extensions": {
+        "sourceUnpacked": "已解压",
+        "sourceWebStore": "Chrome 应用商店",
+        "options": "选项",
+        "toggleLabel": "启用或停用 {{name}}",
+        "remove": "移除",
+        "reload": "从文件夹重新加载",
+        "removeTitle": "移除 {{name}}？",
+        "removeUnpackedDescription": "它会连同已保存的数据一起从所有 Orca 浏览器配置文件中移除。磁盘上的文件夹会保留原位。",
+        "removeDescription": "它会连同已保存的数据一起从所有 Orca 浏览器配置文件中移除。",
+        "heldUpdate": "版本 {{version}} 正在等待更多访问权限。",
+        "reviewAccess": "查看访问权限",
+        "loadError": "无法启动：{{error}}",
+        "profileDescription": "在此处启用的扩展程序会在使用 {{profile}} 配置文件的标签页中运行。",
+        "loadUnpacked": "加载已解压的扩展程序…",
+        "empty": "未安装任何扩展程序。请从上方的 Chrome 应用商店添加。",
+        "title": "扩展程序",
+        "description": "所选本地浏览器配置文件的 Chrome 扩展程序。",
+        "keywordExtension": "扩展程序",
+        "keywordChrome": "chrome",
+        "keywordUnpacked": "已解压",
+        "keywordPassword": "密码管理器",
+        "desktopOnly": "浏览器扩展程序只能在 Orca 桌面应用中运行。",
+        "webStore": {
+          "placeholder": "Chrome 应用商店链接或扩展程序 ID",
+          "inputLabel": "从 Chrome 应用商店添加",
+          "add": "添加",
+          "adding": "正在添加…",
+          "added": "已添加 {{name}}",
+          "browse": "浏览 Chrome 应用商店",
+          "openFailed": "请打开一个工作区以浏览 Chrome 应用商店。"
+        }
       }
     },
     "agents": {
@@ -3418,7 +3451,7 @@
             "dont_ask_again": "对有运行中进程的终端不再询问",
             "stop_agent_confirm": "停止智能体",
             "stop_command_confirm": "停止并关闭",
-            "automatic_resume_warning": "该终端不会自动恢复。取消并将工作区置于睡眠状态以便稍后恢复。"
+            "automatic_resume_warning": "该终端不会自动恢复。请取消并让工作区进入休眠，以便稍后恢复。"
           },
           "MobileDriverOverlay": {
             "c6460cf584": "收回",
@@ -6090,7 +6123,7 @@
           "workspaceSection": "工作区",
           "primaryDeleteDisabled": "主工作树不能删除。请改为移除项目。",
           "deleteWorktree": "删除工作树",
-          "sleepWithDescendants": "与后代同眠 ({{value0}})",
+          "sleepWithDescendants": "与后代一起休眠 ({{value0}})",
           "sleepWithDescendantsDescription": "关闭此工作区中的活动面板以及每个嵌套的后代面板以释放内存和 CPU。",
           "deleteWithDescendants": "与后代一起删除..."
         },
@@ -6354,8 +6387,8 @@
         "sleep": {
           "worktree": {
             "flow": {
-              "c460fecc4a": "无法睡眠某些工作区",
-              "8bc3fc0671": "无法睡眠工作区",
+              "c460fecc4a": "部分工作区休眠失败",
+              "8bc3fc0671": "工作区休眠失败",
               "legacy": {
                 "unverified": "旧版主机运行时无法确认终端已关闭。工作区已保持打开；请更新主机后重试。"
               },
@@ -6621,7 +6654,7 @@
         },
         "WorktreeCardStatusSlot": {
           "branchIdentity": "分支",
-          "sleeping": "睡眠",
+          "sleeping": "休眠",
           "markAsRead": "标为已读",
           "markAsUnread": "标为未读"
         },
@@ -7716,6 +7749,10 @@
             "modeAriaLabel": "智能体仪表盘打开模式",
             "modeInWindow": "窗口内",
             "modePopout": "弹出窗口"
+          },
+          "browserExtensions": {
+            "copy": "为本地浏览器配置文件添加“设置 › 浏览器 › 扩展程序”。",
+            "toggleLabel": "切换浏览器扩展程序"
           }
         },
         "FloatingWorkspacePane": {
@@ -10201,6 +10238,13 @@
               "board": "木板",
               "inWindow": "窗口内",
               "worktrees": "工作树"
+            },
+            "browserExtensions": {
+              "title": "浏览器扩展程序",
+              "description": "在 Orca 浏览器标签页中运行 Chrome 扩展程序，例如密码管理器。",
+              "extension": "扩展程序",
+              "chrome": "chrome",
+              "password": "密码管理器"
             }
           }
         },
@@ -20467,6 +20511,8 @@
       "connectionNotSecure": "连接不安全",
       "cantReachHost": "无法访问 {{value0}}",
       "cantLoadPage": "无法加载此页面",
+      "blockedTitle": "{{host}} 已被阻止",
+      "blockedDescription": "某个扩展程序阻止了此页面。要打开它，请在该扩展程序中允许此网站，然后重试。",
       "certificateNameMismatch": "证书与 {{value0}} 不匹配。",
       "certificateDateInvalid": "{{value0}} 的证书在当前日期和时间无效。",
       "certificateAuthorityInvalid": "Orca 不信任签发 {{value0}} 证书的机构。",
@@ -20580,6 +20626,16 @@
     },
     "managedProfile": {
       "createFailed": "无法创建此工作区的浏览器配置文件。关闭此选项卡并打开一个新选项卡以重试。"
+    },
+    "extensions": {
+      "menu": "扩展程序",
+      "open": "打开",
+      "pin": "固定到工具栏",
+      "unpin": "从工具栏取消固定",
+      "remove": "移除…",
+      "empty": "此配置文件未启用任何扩展程序",
+      "visitWebStore": "访问 Chrome 应用商店",
+      "manage": "管理扩展程序"
     },
     "history": {
       "clear": "清除浏览历史",
@@ -21441,6 +21497,7 @@
       "title": "无法为此聊天命名",
       "description": "聊天命名代理因错误而停止，因此聊天将保留其第一条消息作为名称。",
       "viewError": "查看错误",
+      "settings": "设置",
       "dialogTitle": "聊天自动命名失败",
       "dialogDescriptionStart": "Orca 无法根据第一条消息为",
       "dialogDescriptionEnd": "生成名称。"
@@ -21651,6 +21708,54 @@
     "restartLocal": "重启本地守护进程",
     "killAllLocal": "结束所有本地会话",
     "killFailed": "无法结束终端。将保留上次观察到的会话。"
+  },
+  "browserExtensions": {
+    "permission": {
+      "history": "读取你的浏览历史记录",
+      "historyWrite": "读取和更改你的浏览历史记录",
+      "bookmarks": "读取和更改你的书签",
+      "clipboardRead": "读取你复制和粘贴的数据",
+      "clipboardWrite": "修改你复制和粘贴的数据",
+      "downloads": "管理你的下载内容",
+      "nativeMessaging": "与协作的本地应用程序通信",
+      "notifications": "显示通知",
+      "privacy": "更改你的隐私相关设置",
+      "management": "管理你的其他扩展程序",
+      "proxy": "更改你的代理设置",
+      "contentSettings": "更改哪些网站可以使用 Cookie、JavaScript、摄像头、麦克风和位置信息",
+      "geolocation": "检测你的实际位置",
+      "topSites": "读取你最常访问的网站列表",
+      "blockContent": "屏蔽任意网页上的内容",
+      "debugger": "访问页面调试器后端",
+      "screenCapture": "捕获你的屏幕内容",
+      "email": "获取你的电子邮件地址",
+      "allSites": "读取和更改你在所有网站上的数据",
+      "someSites": "读取和更改你在 {{hosts}} 上的数据",
+      "manySites": "读取和更改你在 {{hosts}} 及其他 {{count}} 个网站上的数据"
+    },
+    "install": {
+      "title": "添加 {{name}}？",
+      "profileDescription": "它会在使用 {{profile}} 配置文件的标签页中运行。",
+      "description": "它会在 Orca 浏览器标签页中运行。",
+      "noAccess": "它不会请求读取或更改网站上的数据。",
+      "canHeading": "它可以：",
+      "cancel": "取消",
+      "confirm": "添加扩展程序"
+    },
+    "uninstall": {
+      "title": "移除 {{name}}？",
+      "confirm": "移除"
+    },
+    "unsupported": {
+      "identity": "扩展程序登录",
+      "line": "Orca 暂不支持：{{features}}。"
+    },
+    "permissions": {
+      "title": "允许 {{name}} 获得更多访问权限？",
+      "description": "它正在请求添加时未拥有的访问权限。",
+      "deny": "拒绝",
+      "confirm": "允许"
+    }
   },
   "workspaceSpace": {
     "table": {
