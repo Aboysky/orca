@@ -1317,6 +1317,12 @@
         "agentUnavailable": "Claude 无法打开此智能体。它可能已不可用。",
         "closeDialog": "Claude 未切换视图。请关闭所有打开的对话框后重试。",
         "hostUnavailable": "此主机上无法使用子智能体导航。请更新 Orca 并在此窗格中重启 Claude。"
+      },
+      "wslHostWindowsDriveRefusal": {
+        "addOnThisComputer": "在此计算机上添加",
+        "title": "在此计算机上添加 Windows 驱动器上的文件夹",
+        "descriptionWithPath": "{{value0}} 位于 Windows 驱动器上。在该位置，WSL 中的 Git 会误报行尾更改、无法察觉从 Windows 中进行的编辑，而且搜索速度很慢。",
+        "description": "此文件夹位于 Windows 驱动器上。在该位置，WSL 中的 Git 会误报行尾更改、无法察觉从 Windows 中进行的编辑，而且搜索速度很慢。"
       }
     },
     "hooks": {
